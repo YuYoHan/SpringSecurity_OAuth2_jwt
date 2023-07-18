@@ -1,0 +1,45 @@
+spring:
+  profiles.include:
+    - jwt
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+
+# MySQL
+  datasource:
+    driver-class-name : com.mysql.cj.jdbc.Driver
+# DB Source URL
+    url : jdbc:mysql://localhost:3306/study02
+# DB username
+    username : root
+# DB userpassword
+    password: 1234
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view : false
+    show-sql: true
+
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+    properties:
+      hibernate:
+        format_sql: true
+
+# thymeleaf
+  thymeleaf:
+    prefix:
+      classpath: templates/
+# ??? ?? ?? ?? - templates ????? ??? ??? ??? ??, ??? ??? ??
+    check-template-location: true
+    suffix: .html
+    mode: HTML5
+    cache: false
+
+
+

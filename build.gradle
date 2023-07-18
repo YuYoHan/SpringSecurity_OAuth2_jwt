@@ -35,6 +35,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    // keycloak
+//    implementation group: 'org.keycloak', name: 'keycloak-spring-boot-starter', version: '21.1.2'
+//    implementation group: 'org.keycloak.bom', name: 'keycloak-adapter-bom', version: '21.1.2', ext: 'pom'
 }
 
 tasks.named('test') {
