@@ -57,7 +57,11 @@ public class IndexController {
         ClientRegistration clientRegistration = clientRegistrationRepository.findByRegistrationId("google");
 
         OAuth2AccessToken oAuth2AccessToken =
-                new OAuth2AccessToken(OAuth2AccessToken.TokenType.BEARER, accessToken, Instant.now(), Instant.MAX);
+                new OAuth2AccessToken(
+                        OAuth2AccessToken.TokenType.BEARER,
+                        accessToken,
+                        Instant.now(),
+                        Instant.MAX);
         log.info("oAuth2AccessToken : " + oAuth2AccessToken);
 
         Map<String, Object> idTokenClaims = new HashMap<>();
