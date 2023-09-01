@@ -80,4 +80,5 @@ public class IndexController {
 
         return oAuth2User;
     }
+
 }
