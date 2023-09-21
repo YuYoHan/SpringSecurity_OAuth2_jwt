@@ -13,22 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Index2Controller {
 
-    @GetMapping("/user")
-    public OAuth2User user(Authentication authentication) {
-        // 인증 객체를 가져옴
-        Authentication authentication1 = SecurityContextHolder.getContext().getAuthentication();
-        OAuth2AuthenticationToken authentication2 = (OAuth2AuthenticationToken) authentication;
-        OAuth2User oAuth2User = authentication2.getPrincipal();
-        return oAuth2User;
-    }
-
-    @GetMapping("/oauth2User")
-    public OAuth2User oAuth2User(@AuthenticationPrincipal OAuth2User oAuth2User) {
-        return oAuth2User;
-    }
-
-    @GetMapping("/oidcUser")
-    public OidcUser oidcUser(@AuthenticationPrincipal OidcUser oidcUser) {
-        return oidcUser;
+    @GetMapping("/v2/")
+    public String index() {
+        return "index";
     }
 }

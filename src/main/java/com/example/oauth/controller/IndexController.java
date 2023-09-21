@@ -27,13 +27,13 @@ public class IndexController {
     @Autowired
     private ClientRegistrationRepository clientRegistrationRepository;
 
-    @GetMapping("/")
+    @GetMapping("/v1/")
     public String index() {
         return "index";
     }
 
     // OAuth2 provider 표준 방식
-    @GetMapping("/user")
+    @GetMapping("/v1/user")
     public OAuth2User user(String accessToken) {
         ClientRegistration clientRegistration = clientRegistrationRepository.findByRegistrationId("google");
 
@@ -52,7 +52,7 @@ public class IndexController {
     }
 
     // Open_id connect 를 통해서 인증처리를 하는 방식
-    @GetMapping("/oidc")
+    @GetMapping("/v1/oidc")
     public OAuth2User oidc(String accessToken, String idToken) {
         ClientRegistration clientRegistration = clientRegistrationRepository.findByRegistrationId("google");
 

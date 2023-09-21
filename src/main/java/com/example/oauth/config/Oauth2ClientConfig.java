@@ -20,29 +20,18 @@ public class Oauth2ClientConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .anyRequest()
-                .authenticated();
+                .antMatchers("/v2/").permitAll()
+                        .anyRequest().authenticated();
 
-        http
-                .logout()
-                        .logoutSuccessHandler(oidcLogoutSuccessHandler())
-                                .invalidateHttpSession(true)
-                                        .clearAuthentication(true)
-                                                .deleteCookies("JSESSIONID");
 
         http
                 .oauth2Login(Customizer.withDefaults());
 
+        http
+                .logout()
+                .logoutSuccessUrl("/v2/");
+
         return http.build();
     }
 
-    private LogoutSuccessHandler oidcLogoutSuccessHandler() {
-        OidcClientInitiatedLogoutSuccessHandler successHandler =
-                new OidcClientInitiatedLogoutSuccessHandler(clientRegistrationRepository);
-
-        successHandler.setPostLogoutRedirectUri("http://localhost:8080/login");
-
-        return successHandler;
-
-    }
 }
