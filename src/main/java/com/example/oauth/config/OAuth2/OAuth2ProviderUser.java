@@ -1,11 +1,13 @@
 package com.example.oauth.config.OAuth2;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 // 여기는 공통적인 부분만 추상화해서 모아놓은 곳이다.
 // Google, Naver에서 다른 부분들은 따로 만들어줄 것이다.
@@ -25,26 +27,28 @@ public abstract class OAuth2ProviderUser implements ProviderUser{
 
     @Override
     public String getPassword() {
-        return null;
+        return UUID.randomUUID().toString();
     }
 
     @Override
     public String getEmail() {
-        return null;
+        return (String) getAttributes().get("email");
     }
 
     @Override
-    public List<? extends GregorianCalendar> getAuthorities() {
-        return null;
+    public List<SimpleGrantedAuthority> getAuthorities() {
+        return oAuth2User.getAuthorities().stream()
+                .map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
+                .collect(Collectors.toList());
     }
 
     @Override
     public String getProvider() {
-        return null;
+        return clientRegistration.getRegistrationId();
     }
 
     @Override
     public Map<String, Object> getAttributes() {
-        return null;
+        return attributes;
     }
 }

@@ -20,6 +20,6 @@ public class GoogleUser extends OAuth2ProviderUser{
     @Override
     // 유저 id
     public String getUserName() {
-        return (String) getAttributes().get("sub");
+        return (String) getAttributes().get("name");
     }
 }
