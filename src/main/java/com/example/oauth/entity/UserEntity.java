@@ -1,5 +1,6 @@
 package com.example.oauth.entity;
 
+import com.example.oauth.domain.Role;
 import com.example.oauth.domain.UserDTO;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,10 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Getter
@@ -28,6 +26,9 @@ public class UserEntity {
     private String provider;
     private String providerId;
     private String email;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
 
     @Builder
     public UserEntity(Long id,
@@ -36,7 +37,8 @@ public class UserEntity {
                       String password,
                       String provider,
                       String providerId,
-                      String email) {
+                      String email,
+                      Role role) {
         this.id = id;
         this.registrationId = registrationId;
         this.userName = userName;
@@ -44,6 +46,7 @@ public class UserEntity {
         this.provider = provider;
         this.providerId = providerId;
         this.email = email;
+        this.role = role;
     }
 
     public static UserEntity toEntity(UserDTO userDTO) {
@@ -54,6 +57,7 @@ public class UserEntity {
                 .provider(userDTO.getProvider())
                 .providerId(userDTO.getProviderId())
                 .email(userDTO.getEmail())
+                .role(userDTO.getRole())
                 .build();
     }
 }

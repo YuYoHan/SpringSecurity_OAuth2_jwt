@@ -20,6 +20,7 @@ public class UserDTO {
     private String providerId;
     private String email;
     private List<? extends GrantedAuthority> authorities;
+    private Role role;
 
     @Builder
     public UserDTO(Long id,
@@ -29,7 +30,8 @@ public class UserDTO {
                    String provider,
                    String email,
                    String providerId,
-                   List<? extends GrantedAuthority> authorities) {
+                   List<? extends GrantedAuthority> authorities,
+                   Role role) {
         this.id = id;
         this.registrationId = registrationId;
         this.userName = userName;
@@ -38,5 +40,6 @@ public class UserDTO {
         this.providerId = providerId;
         this.email = email;
         this.authorities = authorities;
+        this.role = role;
     }
 }
