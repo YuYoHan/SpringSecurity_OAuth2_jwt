@@ -16,6 +16,8 @@ public class CustomAuthenticationEntryPoint  implements AuthenticationEntryPoint
                          HttpServletResponse response,
                          AuthenticationException authException) throws IOException, ServletException {
         response.addHeader("WWW-Authenticate", "Basic realm=localhost");
-        response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase());
+        response.sendError(
+                HttpStatus.UNAUTHORIZED.value(),
+                HttpStatus.UNAUTHORIZED.getReasonPhrase());
     }
 }
