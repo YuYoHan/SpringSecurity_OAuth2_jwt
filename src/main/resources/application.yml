@@ -46,3 +46,4 @@ logging:
         type:
           descriptor:
             sql: trace
+
