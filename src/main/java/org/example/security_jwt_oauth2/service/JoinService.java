@@ -19,8 +19,8 @@ public class JoinService {
     public void joinProcess(JoinDTO joinDTO) {
 
         // DB에 이미 동일한 계정이 존재하는지 체크
-        UserEntity findByUser = userRepository.findByUserName(joinDTO.getUserName());
-        if (findByUser != null) {
+        boolean isUser = userRepository.existsByUserName(joinDTO.getUserName());
+        if (isUser) {
             UserEntity user = UserEntity.builder()
                     .userName(joinDTO.getUserName())
                     .password(bCryptPasswordEncoder.encode(joinDTO.getPassword()))

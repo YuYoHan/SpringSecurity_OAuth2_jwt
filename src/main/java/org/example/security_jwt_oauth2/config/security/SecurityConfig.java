@@ -33,8 +33,7 @@ public class SecurityConfig {
                         .loginProcessingUrl("/loginProc") // form에서 post로 이경로로 보내면 시큐리티가 처리함
                         .permitAll() // 로그인  페이지는 누구나 접근 가능
                 )
-                .logout(logout -> logout
-                        .permitAll()  // 로그아웃 URL 접근 허용
+                .logout(logout -> logout.permitAll()  // 로그아웃 URL 접근 허용
                 )
                 .csrf(auth -> auth.disable());
 
