@@ -8,6 +8,7 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
+@Getter
 public class UserEntity {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
