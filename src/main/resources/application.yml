@@ -3,28 +3,36 @@ spring:
     auto-configure: false
   h2:
     console:
-      enabled: true  # H2 ??? ???
-      path: /h2-console  # H2 ?? ?? ??
+      enabled: true
+      path: /h2-console
 
   datasource:
-    url: jdbc:h2:mem:testdb  # H2 ??? DB ?? URL
+    url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
-    username: sa  # ?? H2 ????
+    username: sa
     password:
 
   jpa:
     hibernate:
-      ddl-auto: update  # ??? ?? ???? (create, create-drop, update ??)
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    show-sql: true  # ??? ??
+    show-sql: true
     properties:
       hibernate:
-        format_sql: true  # SQL ??? ????? ?? ?? ??
+        format_sql: true
 
 
   devtools:
     restart:
-      enabled: true  # ????? ?? ??? ?? ???
+      enabled: true
     livereload:
-      enabled: true  # LiveReload ??? (????? ?? ?? ??)
+      enabled: true
+
+# 세션 소멸 시간 설정
+# 로그인 이후 세션이 유지되고 소멸하는 시간을 설정할 수 있다.
+# 세션 소멸 시점은 서버에 마지막 특정 요청을 수행한 뒤 설정한 시간 만큼 유지
+server:
+  servlet:
+    session:
+      timeout: 90m

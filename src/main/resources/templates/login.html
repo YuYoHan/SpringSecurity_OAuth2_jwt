@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>login</title>
@@ -7,10 +7,14 @@
 <body>
 <h2>login page</h2>
 <hr>
-<form action="/loginProc" method="post" name="loginForm">
-    <input id="userName" type="text" name="userName" placeholder="id" />
-    <input id="password" type="password" name="password" placeholder="password"/>
-    <input type="submit" value="login"/>
+<form th:action="@{/loginProc}" method="post" name="loginForm">
+    <input id="userName" type="text" name="userName" placeholder="ID" />
+    <input id="password" type="password" name="password" placeholder="Password" />
+
+    <!-- CSRF 토큰 처리 -->
+    <input type="hidden" th:name="_csrf" th:value="${_csrf.token}" />
+
+    <input type="submit" value="Login"/>
 </form>
 </body>
 </html>

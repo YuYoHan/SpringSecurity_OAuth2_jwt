@@ -37,6 +37,19 @@ public class SecurityConfig {
                 )
                 .csrf(auth -> auth.disable());
 
+        http
+                .sessionManagement(auth -> auth
+                        // 하나의 아이디에 대한 다중 로그인 허용 개수
+                        .maximumSessions(1)
+                        // 다중 로그인 개수를 초과하였을 경우 처리 방법
+                        // true : 초과시 새로운 로그인 차단
+                        // false : 초과시 기존 세션 하나 삭제
+                        .maxSessionsPreventsLogin(true));
+
+        http
+                .sessionManagement(auth -> auth
+                        .sessionFixation().changeSessionId());
+
 
         return http.build();
     }
